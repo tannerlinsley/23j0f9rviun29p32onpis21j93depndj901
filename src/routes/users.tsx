@@ -3,7 +3,7 @@ import axios from 'redaxios'
 import { createServerFn } from '@tanstack/react-start'
 import type { User } from '../utils/users'
 
-const fetchUsers = createServerFn({ method: 'GET', type: 'static' }).handler(
+const fetchUsers = createServerFn({ method: 'GET', type: 'dynamic' }).handler(
   async () => {
     console.info('Fetching users...')
     const res = await axios.get<Array<User>>(

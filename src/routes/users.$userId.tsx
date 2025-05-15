@@ -5,7 +5,7 @@ import type { ErrorComponentProps } from '@tanstack/react-router'
 import type { User } from '~/utils/users'
 import { NotFound } from '~/components/NotFound'
 
-const fetchUser = createServerFn({ method: 'GET', type: 'static' })
+const fetchUser = createServerFn({ method: 'GET', type: 'dynamic' })
   .validator((d: string) => d)
   .handler(async ({ data: userId }) => {
     return axios
