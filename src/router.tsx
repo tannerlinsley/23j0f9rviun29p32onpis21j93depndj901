@@ -9,6 +9,7 @@ export function createRouter() {
     defaultPreload: 'intent',
     defaultErrorComponent: DefaultCatchBoundary,
     defaultNotFoundComponent: () => <NotFound />,
+    defaultPendingComponent: () => <div>Loading...</div>,
     scrollRestoration: true,
   })
 
