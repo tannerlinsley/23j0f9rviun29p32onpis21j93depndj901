@@ -1,1 +1,8 @@
-/*  /_shell.html  200  Content-Type=text/html
+# Allow requests to /_serverFn/* to be routed through to the server (If you have configured your server function base path to be something other than /_serverFn, use that instead)
+/_serverFn/* /_serverFn/:splat 200
+
+# Allow any requests to /api/* to be routed through to the server (Server routes can be created at any path, so you must ensure that any server routes you want to use are under this path, or simply add additional redirects for each server route base you want to expose)
+/api/* /api/:splat 200
+
+# Catch all other 404 requests and rewrite them to the SPA shell
+/* /_shell.html 200
