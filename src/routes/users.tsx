@@ -1,9 +1,10 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { Link, Outlet } from '@tanstack/react-router'
 import axios from 'redaxios'
 import { createServerFn } from '@tanstack/react-start'
 import type { User } from '../utils/users'
 
-const fetchUsers = createServerFn({ method: 'GET', type: 'dynamic' }).handler(
+const fetchUsers = createServerFn({ method: 'GET' }).handler(
   async () => {
     console.info('Fetching users...')
     const res = await axios.get<Array<User>>(
@@ -16,7 +17,7 @@ const fetchUsers = createServerFn({ method: 'GET', type: 'dynamic' }).handler(
   },
 )
 
-export const Route = createFileRoute({
+export const Route = createFileRoute('/users')({
   loader: async () => fetchUsers(),
   component: UsersComponent,
 })
