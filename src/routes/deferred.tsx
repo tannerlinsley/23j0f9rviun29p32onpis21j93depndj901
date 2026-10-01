@@ -1,21 +1,22 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { Await } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { Suspense, useState } from 'react'
 
-const personServerFn = createServerFn({ method: 'GET', type: 'dynamic' })
+const personServerFn = createServerFn({ method: 'GET' })
   .validator((d: string) => d)
   .handler(({ data: name }) => {
     return { name, randomNumber: Math.floor(Math.random() * 100) }
   })
 
-const slowServerFn = createServerFn({ method: 'GET', type: 'dynamic' })
+const slowServerFn = createServerFn({ method: 'GET' })
   .validator((d: string) => d)
   .handler(async ({ data: name }) => {
     await new Promise((r) => setTimeout(r, 1000))
     return { name, randomNumber: Math.floor(Math.random() * 100) }
   })
 
-export const Route = createFileRoute({
+export const Route = createFileRoute('/deferred')({
   loader: async () => {
     return {
       deferredStuff: new Promise<string>((r) =>
